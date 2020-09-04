@@ -1,1 +1,43 @@
-<p>list-job works!</p>
+<section class="job-form-section job-form-section--image">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="job-form-box">
+                <h2 class="heading">Find a <span class="accent">job</span> you will
+                    <span class="accent">love</span>.
+                </h2>
+                <form [formGroup]="formSearch" (ngSubmit)="search()" id="job-main-form" class="job-main-form">
+                    <div class="controls">
+                        <div class="row align-items-center">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label for="title">Job title</label>
+                                    <input formControlName="title" type="text" id="title" name="position" placeholder="Job you are looking for" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-outline-danger job-main-form__button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h3 class="heading">We have found <span class="accent">{{items.length}}</span> jobs</h3>
+
+        <row-item *ngFor="let item of items" [data]="item"></row-item>
+
+        <div class="row">
+            <div class="col-md-12">
+                <app-pagination #pagination [crrPage]="crrPage" [numPage]="4" [infoPage]="infoPage" (updatePage)="updatePage($event)"></app-pagination>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,13 @@
+<div *ngIf="pageShow" class="row" style="display: flex; justify-content: center; align-items: center; margin-top: 30px;">
+    <ul class="pagination pagination-flat pagination-rounded align-self-center">
+        <li [ngClass]="{'disabled':crrPage==1}" class="page-item">
+            <a (click)="changePage(crrPage-1)" class="page-link">← &nbsp; Prev</a>
+        </li>
+        <li *ngFor="let page of pageShow, let i = index" [ngStyle]="{'display': (page.text ==-1)?'none':''}" class="page-item" [ngClass]="{'active': page.isActive}">
+            <a (click)="changePage(page.text)" class="page-link">{{page.text}}</a>
+        </li>
+
+        <li [ngClass]="{'disabled': infoPage && infoPage.current_page == infoPage.next_page}" class="page-item"><a (click)="changePage(crrPage+1)" class="page-link">Next &nbsp;
+				→</a></li>
+    </ul>
+</div>

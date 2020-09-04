@@ -1,1 +1,24 @@
-<p>row-item works!</p>
+<div class="job-listing  ">
+    <div class="row">
+        <div class="col-md-12 col-lg-6">
+            <div class="row">
+                <div class="col-2">
+                    <img src="../../../../assets/images/company-1.png" alt="Ipsioou " class="img-fluid">
+                </div>
+                <div class="col-10">
+                    <h4 class="job__title"><a [routerLink]="['/jobs/detail', data.id]">{{data.job_title}}</a></h4>
+                    <p class="job__company">
+                        {{data.company_name}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-10 col-md-3 col-lg-2 ml-auto">
+            <i class="fa fa-map-marker job__location"></i>
+            <span>{{data.location}}</span>
+        </div>
+        <div class="col-10 col-md-3 col-lg-3 ml-auto">
+            <p>Posted {{postDate|date}}</p>
+        </div>
+    </div>
+</div>
