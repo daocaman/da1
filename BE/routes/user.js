@@ -3,14 +3,38 @@ const router = express.Router();
 const crypto = require("crypto-js")
 const db = require('../db.js');
 
-router.get('/list', (req, res, next) => {
+router.post('/list', (req, res, next) => {
     var sql = "select * from user";
+
+    var data = req.body;
+    var page = data.page;
+    var display = data.display;
+    var total = 0;
+
     db.query(sql, (err, results) => {
         if (err) throw err;
 
+        total = results.length;
+        var num_pages = Math.ceil(total / display);
+        var previous_page = (page - 1) <= 0 ? 1 : page - 1;
+        var next_page = (page + 1) > num_pages ? num_pages : page + 1;
+        var fromValue = 0;
+        var endValue = total;
+        if (results.length > 0) {
+            fromValue = (page - 1) * display;
+            endValue = (fromValue + display) > total ? total : (fromValue + display);
+        }
         res.status(200).json({
             message: "ok",
-            users: results
+            users: results.slice(fromValue, endValue),
+            _meta: {
+                total: total,
+                num_pages: num_pages,
+                current_page: page,
+                previous_page: previous_page,
+                next_page: next_page,
+                num_per_page: display
+            }
         })
     })
 })
@@ -33,7 +57,7 @@ router.post('/create', (req, res, next) => {
     db.query(sql, [tmpUser.email], (err, results) => {
         if (err) throw err;
 
-        if (results.length >  0) {
+        if (results.length > 0) {
             res.status(400).json({
                 message: 'Không tồn tại tài khoản'
             })
@@ -48,9 +72,7 @@ router.post('/create', (req, res, next) => {
                 })
             })
         }
-
     })
-
 })
 
 router.post('/login', (req, res, next) => {
@@ -78,10 +100,8 @@ router.post('/login', (req, res, next) => {
                 })
             }
         }
-
     })
 })
-
 
 router.put('/update', (req, res, next) => {
     var sql = "update user set ? where id = ?";

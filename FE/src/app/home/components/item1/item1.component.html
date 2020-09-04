@@ -1,0 +1,24 @@
+<div class="col-lg-4 mb-5 mb-lg-0">
+    <div class="box-image-text bg-visible full-height">
+        <div class="top">
+            <a [routerLink]="['/jobs/detail', data.id]">
+                <div class="image">
+                    <img src="../../../../assets/images/featured1.jpg" alt="" class="img-fluid">
+                </div>
+                <div class="bg"></div>
+                <div class="logo">
+                    <img src="../../../../assets/images/company-1.png" alt="" style="max-width: 80px;">
+                </div>
+            </a>
+        </div>
+        <div class="content">
+            <h5><a [routerLink]="['/jobs/detail', data.id]">{{data.job_title}}</a></h5>
+            <p class="featured__details"><i class="fa fa-map-marker job__location"></i>
+                <span>{{data.location}}</span>
+                <span class="badge featured-badge badge-success">{{jobType[data.type]}}</span>
+
+            </p>
+            <p>{{data.job_des}}</p>
+        </div>
+    </div>
+</div>
