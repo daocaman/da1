@@ -24,7 +24,7 @@ router.post('/list', (req, res, next) => {
         var fromValue = 0;
         var endValue = total;
         if (results.length > 0) {
-            fromValue = (page - 1) * display - 1;
+            fromValue = (page - 1) * display;
             endValue = (fromValue + display) > total ? total : (fromValue + display);
         }
         res.status(200).json({
@@ -62,7 +62,7 @@ router.post('/list/user/:userId', (req, res, next) => {
         var fromValue = 0;
         var endValue = total;
         if (results.length > 0) {
-            fromValue = (page - 1) * display - 1;
+            fromValue = (page - 1) * display;
             endValue = (fromValue + display) > total ? total : (fromValue + display);
         }
         res.status(200).json({
@@ -92,10 +92,9 @@ router.get('/list/:id', (req, res, next) => {
 })
 
 
-
 router.post('/create', (req, res, next) => {
     var sql = "insert into job set ?";
-    db.query(sql, [req.params.id], (err, results) => {
+    db.query(sql, [req.body], (err, results) => {
         if (err) throw err;
         res.status(200).json({
             message: "ok",

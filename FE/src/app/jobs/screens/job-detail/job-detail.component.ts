@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute } from '@angular/router';
 import { JobService } from '../../services/job.service';
+
 
 @Component({
   selector: 'app-job-detail',
@@ -26,7 +27,7 @@ export class JobDetailComponent implements OnInit {
 
   data = null;
   id = null;
-  postDate = null;
+  expireDate = null;
   constructor(
     private route: ActivatedRoute,
     private _job: JobService
@@ -42,7 +43,7 @@ export class JobDetailComponent implements OnInit {
       (res: any) => {
         this.data = res.job;
         // console.log(this.data);
-        this.postDate = new Date(this.data.post_date);
+        this.expireDate = new Date(this.data.expire_date);
         console.log(this.data)
       }
     )

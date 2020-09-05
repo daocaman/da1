@@ -5,7 +5,7 @@
         </h1>
         <div class="job-detail-description">
             <i class="fa fa-map-marker job__location"> </i>
-            <span> {{(data && data.location)?data.location: ''}} | {{postDate|date}} | </span>
+            <span> {{(data && data.location)?data.location: ''}} | Expire date: {{expireDate|date}} | </span>
             <span class="badge featured-badge" [ngClass]="{'badge-success': data && data.type==0, 'badge-primary': data && data.type==1, 'badge-warning': data && data.type==2}">{{(data)?jobType[data.type]:""}}</span>
         </div>
     </div>
@@ -20,7 +20,6 @@
                 <blockquote class="blockquote">
                     <p>{{(data)?data.job_des:""}}</p>
                 </blockquote>
-
             </div>
             <div class="col-lg-1"></div>
             <div class="col-lg-3">
