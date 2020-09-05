@@ -1,0 +1,29 @@
+<div class="container-fluid d-flex flex-row justify-content-center">
+    <div class="col-lg-6 ">
+        <div class="box">
+            <h3 class="heading">Login</h3>
+            <p class="lead">Already our have account?</p>
+
+            <form [formGroup]="formLogin" (ngSubmit)="submit()">
+
+                <div class="form-group">
+                    <label for="id_email">Email</label>
+                    <input [ngClass]="{'border-danger': f.email.invalid && f.email.touched}" formControlName="email" formControlName="email" type="email" class="form-control" name="email" id="id_email" placeholder="Enter Email">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_password">Password</label>
+                    <input [ngClass]="{'border-danger': f.password.invalid && f.password.touched}" formControlName="password" type="password" class="form-control" name="password" id="id_password" placeholder="Enter Password">
+                </div>
+                <div class="invalid-feedback-custom" *ngIf="submitted && error">
+                    <span class="text-danger">{{error}}</span>
+                </div>
+                <div class="text-center">
+                    <button [disabled]="formLogin.invalid" type="submit" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i> Log in
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

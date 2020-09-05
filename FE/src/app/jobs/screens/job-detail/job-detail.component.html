@@ -1,10 +1,44 @@
 <section class="bg-light-gray">
     <div class="container">
-        <h1 class="heading">Learn Laravel with vue2<br>
-            <small>at <a href="javascript:void(0)"> ggnhfh</a></small>
+        <h1 class="heading ">{{(data && data.job_title)?data.job_title:''}}<br>
+            <small>at <a  [href]="(data)?data.web_site:'javascript:void(0)'"> {{(data && data.company_name)?data.company_name:''}}</a></small>
         </h1>
-        <div class="job-detail-description"><i class="fa fa-map-marker job__location"> </i> Dhaka, Bangladesh | Posted 1&nbsp;year, 5&nbsp;months |
-            <span class="badge featured-badge badge-success">Full time</span>
+        <div class="job-detail-description">
+            <i class="fa fa-map-marker job__location"> </i>
+            <span> {{(data && data.location)?data.location: ''}} | {{postDate|date}} | </span>
+            <span class="badge featured-badge" [ngClass]="{'badge-success': data && data.type==0, 'badge-primary': data && data.type==1, 'badge-warning': data && data.type==2}">{{(data)?jobType[data.type]:""}}</span>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h3 class="text-primary">Category: {{(data)?category[data.category]:''}}</h3>
+                <h4 class="text-success">Email: {{data?data.email:''}}</h4>
+                <h5 class="text-info">Salary: {{data?data.salary:''}}/Monthly </h5>
+                <blockquote class="blockquote">
+                    <p>{{(data)?data.job_des:""}}</p>
+                </blockquote>
+
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+                <h4 class="text-info">About {{data?data.company_name:''}}</h4>
+                <p class="job-detail__company-description">{{data?data.company_des:''}}</p>
+                <p class="job-detail__social social social--outline">
+                    <a [href]="(data)?data.web_site:'javascript:void(0)'" data-toggle="tooltip" data-placement="top" title="Website" class="link">
+                        <i class="fa fa-link"></i>
+                    </a>
+                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </p>
+
+            </div>
         </div>
     </div>
 </section>

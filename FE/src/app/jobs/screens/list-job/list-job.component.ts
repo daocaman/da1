@@ -44,9 +44,7 @@ export class ListJobComponent implements OnInit {
       }
     )
   }
-
  
-
   search(){
     this.searchValue = this.formSearch.controls.title.value;
     this.getData();

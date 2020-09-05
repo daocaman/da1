@@ -59,7 +59,7 @@ router.post('/create', (req, res, next) => {
 
         if (results.length > 0) {
             res.status(400).json({
-                message: 'Không tồn tại tài khoản'
+                message: 'Tài khoản đã tồn tại'
             })
         } else {
             sql = "insert into user set ?";

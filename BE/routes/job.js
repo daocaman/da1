@@ -86,7 +86,7 @@ router.get('/list/:id', (req, res, next) => {
         if (err) throw err;
         res.status(200).json({
             message: "ok",
-            job: results ? results : null
+            job: results[0] ? results[0] : null
         })
     })
 })

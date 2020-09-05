@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { JobService } from '../../services/job.service';
 
 @Component({
   selector: 'app-job-detail',
@@ -7,16 +8,44 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./job-detail.component.scss']
 })
 export class JobDetailComponent implements OnInit {
-  
+
   jobType = [
     "Full time",
     "Part time",
     "Intership"
   ];
-  constructor() { }
+
+  category = [
+    "Web design",
+    "Graphic design",
+    "Web development",
+    "Human Resources",
+    "Support",
+    "Android"
+  ]
+
+  data = null;
+  id = null;
+  postDate = null;
+  constructor(
+    private route: ActivatedRoute,
+    private _job: JobService
+  ) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.getData();
   }
 
-  
+  getData() {
+    this._job.getJob(this.id).subscribe(
+      (res: any) => {
+        this.data = res.job;
+        // console.log(this.data);
+        this.postDate = new Date(this.data.post_date);
+        console.log(this.data)
+      }
+    )
+  }
+
 }
