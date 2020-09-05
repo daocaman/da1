@@ -37,10 +37,9 @@ export class ListJobComponent implements OnInit {
       (res: any) => {
         this.items = res.jobs;
         this.infoPage = res._meta;
-        console.log(this.infoPage);
         setTimeout(()=>{
           this.pagination.check()
-        },3000)
+        },1500)
       }
     )
   }

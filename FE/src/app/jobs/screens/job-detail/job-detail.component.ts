@@ -42,9 +42,7 @@ export class JobDetailComponent implements OnInit {
     this._job.getJob(this.id).subscribe(
       (res: any) => {
         this.data = res.job;
-        // console.log(this.data);
         this.expireDate = new Date(this.data.expire_date);
-        console.log(this.data)
       }
     )
   }

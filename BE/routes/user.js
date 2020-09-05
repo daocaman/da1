@@ -4,7 +4,7 @@ const crypto = require("crypto-js")
 const db = require('../db.js');
 
 router.post('/list', (req, res, next) => {
-    var sql = "select * from user";
+    var sql = "select * from user where type=2";
 
     var data = req.body;
     var page = data.page;
@@ -77,7 +77,6 @@ router.post('/create', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
     tmpLogin = req.body;
-    console.log(tmpLogin);
     var sql = "select * from user where email=?";
     db.query(sql, [tmpLogin.email], (err, results) => {
         if (err) throw err;
@@ -88,7 +87,6 @@ router.post('/login', (req, res, next) => {
             })
         } else {
             tmpUser = results[0];
-            console.log(tmpUser);
             if (tmpUser.password == crypto.MD5(tmpLogin.password).toString()) {
                 res.status(200).json({
                     message: "ok",

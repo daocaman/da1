@@ -30,7 +30,7 @@
                             <span>{{user.last_name}}</span>
                         </a>
                         <div id="togglenav" aria-labelledby="clientZone" class="dropdown-menu">
-                            <a *ngIf="user&&user.type==1" href="#" class="dropdown-item">Users</a>
+                            <a *ngIf="user&&user.type==1" [routerLink]="['/user']" class="dropdown-item">Users</a>
                             <a *ngIf="user" [routerLink]="['/post']" class="dropdown-item">Posts</a>
                             <a *ngIf="user&&user.type==2" [routerLink]="['/post/create']" class="dropdown-item">Post new job</a>
                             <a (click)="logout()" class="dropdown-item">Logout</a>

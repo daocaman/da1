@@ -50,7 +50,6 @@ export class PaginationComponent implements OnInit {
 
   changePage(target: any) {
     let lastIndex = this.pageShow.length - 1;
-    console.log(this.infoPage);
     if (target > this.crrPage) {
       if (this.infoPage.current_page !== this.infoPage.next_Page) {
         if (target >= this.pageShow[lastIndex].text) {
@@ -77,11 +76,9 @@ export class PaginationComponent implements OnInit {
   }
 
   setPageValue(param: any) {
-    // console.log(this.pageShow);
     let lastIndex = this.pageShow.length - 1;
     if (param == 'next' && this.pageShow[lastIndex].text != -1) {
       let upBound = (this.pageShow[lastIndex].text + lastIndex) > this.infoPage.num_pages ? this.infoPage.num_pages : (this.pageShow[lastIndex].text + lastIndex);
-      console.log(upBound);
       for (let i = this.pageShow.length - 1; i >= 0; i--) {
         this.pageShow[i].text = upBound;
         upBound -= 1;

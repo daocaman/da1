@@ -17,7 +17,6 @@ router.post('/list', (req, res, next) => {
         if (err) throw err;
 
         total = results.length;
-        console.log(total);
         var num_pages = Math.ceil(total / display);
         var previous_page = (page - 1) <= 0 ? 1 : page - 1;
         var next_page = (page + 1) > num_pages ? num_pages : page + 1;

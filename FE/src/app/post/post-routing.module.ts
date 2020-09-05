@@ -12,8 +12,6 @@ const routes: Routes = [
   { path: 'edit/:id', component: PostEditComponent },
 ]
 
-
-
 @NgModule({
   declarations: [],
   imports: [

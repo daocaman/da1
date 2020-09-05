@@ -14,15 +14,11 @@ export class RowItemComponent implements OnInit {
     "Intership"
   ];
 
-  postDate = null;
+  expireDate = null;
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.data);
-
-    this.postDate = new Date(this.data.post_date);
-
-   
+    this.expireDate = new Date(this.data.expire_date);
   }
 
 }

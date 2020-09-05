@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute } from '@angular/router';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-post-edit',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostEditComponent implements OnInit {
 
-  constructor() { }
+  data = null;
+  id = null;
+  constructor(
+    private _post: PostService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.getData();
   }
+
+  getData(){
+    this._post.getPostID(this.id).subscribe(
+      (res:any)=>{
+        this.data = res.job;
+      }
+    )
+  }
+
+
 
 }

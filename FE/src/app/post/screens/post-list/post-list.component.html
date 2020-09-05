@@ -1,1 +1,68 @@
-<p>post-list works!</p>
+<section class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="heading">List jobs</h1>
+                <p class="lead text-center">All created jobs</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-right mb-5">
+                <a [routerLink]="['/post/create']" class="btn btn-outline-white-primary">
+                    <i class="fa fa-plus"></i>Add new position
+                </a>
+            </div>
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-client-dashboard">
+                        <thead>
+                            <tr>
+                                <th>Job title</th>
+                                <th>Type</th>
+                                <th>Category</th>
+                                <th>Company</th>
+                                <th>Date expiring</th>
+                                <th *ngIf="user.type==1">
+                                    ID User
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of items">
+                                <td><a [routerLink]="['/jobs/detail',item.id]">{{item.job_title}}</a>
+                                </td>
+                                <td>
+                                    <span class="badge featured-badge" [ngClass]="{'badge-success': item.type==0, 'badge-primary': item.type==1, 'badge-warning': item.type==2}">{{jobType[item.type]}}</span>
+                                </td>
+                                <td>{{category[item.category]}}</td>
+                                <td>{{item.company_name}}</td>
+                                <td>{{item.expire_date|date}}</td>
+                                <td *ngIf="user.type==1">
+                                    {{item.id_user}}
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/post/edit',item.id]" class="btn btn-outline-white-secondary">
+                                        <i class="fa fa-edit"></i>Edit
+                                    </a>
+                                    <br>
+
+                                    <a (click)="delete(item.id)" class="btn btn-outline-white-secondary">
+                                        <i class="fa fa-times-circle-o"></i>Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pages">
+                    <app-pagination #pagination [crrPage]="crrPage" [numPage]="4" [infoPage]="infoPage" (updatePage)="updatePage($event)"></app-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

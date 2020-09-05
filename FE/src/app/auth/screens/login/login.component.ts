@@ -39,17 +39,14 @@ export class LoginComponent implements OnInit {
       let postData = this.formLogin.value;
       this._auth.login(postData).subscribe(
         (res:any)=>{
-          console.log(res);
           let tmpUser = res.user;
           this.myStorage.setItem('user', JSON.stringify(tmpUser));
 
-          // console.log(this.myStorage.getItem('user'));
           window.location.href = "http://localhost:4200";
 
         },
         (err)=>{
           this.error = err.error.message;
-          console.log(this.error);
         }
       )
     }

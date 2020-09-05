@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.myStorage = window.localStorage;
-    // console.log(this.myStorage.getItem('user'));
     this.user = this.myStorage.getItem('user');
     this.user = JSON.parse(this.user);
     

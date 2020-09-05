@@ -9,6 +9,12 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
 
+  jobType = [
+    "Full time",
+    "Part time",
+    "Intership"
+  ];
+  
   crrPage = 1;
 
   display = 6;
