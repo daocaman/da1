@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(module => module.AuthModule) },
   { path: 'post', loadChildren: () => import('./post/post.module').then(module => module.PostModule) },
   {path: 'user', component: UserComponent},
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'home' }
 ]
 
 @NgModule({

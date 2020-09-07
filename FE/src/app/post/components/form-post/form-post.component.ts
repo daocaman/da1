@@ -65,12 +65,11 @@ export class FormPostComponent implements OnInit {
     return this.formPost.controls;
   }
 
-
-
   submit() {
     this.submitted = true;
     if (this.formPost.valid) {
       if (!this.data) {
+        console.log(this.formPost.value);
         this._post.create(this.formPost.value).subscribe(
           (res) => {
             alert("success");
@@ -80,6 +79,8 @@ export class FormPostComponent implements OnInit {
       } else {
         let postData = this.formPost.value;
         postData = { id: this.data.id, ...postData }
+        console.log('postData',postData);
+
         this._post.updateID(postData).subscribe(
           (res) => {
             alert("success");

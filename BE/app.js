@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-    res.send("ahihi");
+    res.send("Server run success");
 })
 
 const user = require('./routes/user.js');
